@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #050816;
+  color: #e7e9f5;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #8b5cf6;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050816;
+}
+::-webkit-scrollbar-thumb {
+  background: #23294a;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b6bff;
+}
+
+:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08];
+  }
+
+  .glass-hover {
+    @apply transition-all duration-500 hover:bg-white/[0.05] hover:border-white/[0.14];
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs tracking-[0.25em] uppercase text-cyan-soft/80;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-soft via-violet-soft to-cyan-soft bg-clip-text text-transparent;
+  }
+
+  .section-pad {
+    @apply px-6 md:px-12 lg:px-20 py-24 md:py-32;
+  }
+
+  /* Signature element: the "signal trace" — a thin animated gradient wire
+     used to thread sections together, echoing a circuit / data path. */
+  .signal-line {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(59, 107, 255, 0.6) 20%,
+      rgba(139, 92, 246, 0.8) 50%,
+      rgba(34, 211, 238, 0.6) 80%,
+      transparent 100%
+    );
+  }
+
+  .signal-node {
+    @apply relative flex items-center justify-center;
+  }
+
+  .signal-node::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    background: radial-gradient(
+      circle,
+      rgba(139, 92, 246, 0.5) 0%,
+      transparent 70%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
